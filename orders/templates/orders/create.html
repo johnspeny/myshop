@@ -1,0 +1,19 @@
+{% extends 'shop/list.html' %}
+
+{% block head %}	
+<div style="background-color: grey">
+		{% for item in cart %}
+			<p>{{ item.quantity }}x {{ item.product.name }}</p>
+			<p>{{ item.total_price }}</p>
+		{% endfor %}
+		<p>{{ cart.get_total_price }}</p>
+	</div>
+
+<form action="" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Place order">
+</form>
+
+{% endblock %}
+

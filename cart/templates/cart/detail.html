@@ -1,0 +1,21 @@
+{% extends 'shop/list.html' %}
+
+{% block head %}
+
+
+<h1>Your shopping cart</h1>
+{{ cart|length }}
+
+{% for item in cart %}
+<p>{{ item.product.name }}</p>
+<p>{{ item.quantity }}</p>
+<a href="{% url 'cart:cart_remove' item.product.id %}">Remove</a>
+{% endfor %}
+
+<p>{{ cart.get_total_price }}</p>
+
+
+<a href="{% url "shop:list" %}">Continue shopping</a>
+<a href="{% url "orders:order_create" %}">Checkout</a>
+
+{% endblock %}

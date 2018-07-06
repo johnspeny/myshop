@@ -1,0 +1,63 @@
+{% extends 'shop/list.html' %}
+{% load static %}
+{% load myfilters %}
+
+  <!-- Image header -->
+  {% block head %}
+  <div class="w3-display-container w3-container">
+    <img src="{% static 'shop/pics/r.jpg' %}" alt="Jeans" style="width:100%">
+    <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+      <h1 class="w3-jumbo w3-hide-small w3-text-black">New arrivals</h1>
+      <h1 class="w3-hide-large w3-hide-medium w3-text-black">New arrivals</h1>
+      <h1 class="w3-hide-small w3-text-black">COLLECTION 2018</h1>
+      <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block itemNum %}
+  <div class="w3-container w3-text-grey" id="jeans">
+    <p>8 items</p>
+  </div>{% endblock %}
+
+   <!-- Product grid -->
+
+
+{% block photot %}
+  <div class="w3-row w3-grayscale">
+  {% for product in products %} 
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="{{ product.image.url }}" style="width:100%;max-height: 150px">
+          <span class="w3-tag w3-display-topleft">New</span>
+          <div class="w3-display-middle w3-display-hover">
+            <a href="{{ product.get_absolute_url }}"><button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button></a>
+          </div>
+        </div>
+        <p>{{ product.name }}<br><b>{{ product.price }}</b></p>
+      </div>
+    </div>
+{% endfor %} 
+</div>{% endblock %}
+
+{% block contact %}
+ <div class="w3-col s4">
+        <h4>Contact</h4>
+        <p>Questions? Go ahead.</p>
+        <form action="" target="_blank" method="post">
+          {% csrf_token %}
+          <p>
+            {{ f.sender|addClass:"w3-input w3-border" }}
+          </p>
+          <p>
+            <!-- <input class="w3-input w3-border" type="text" placeholder="Subject" name="Subject" required> -->{{ f.subject|addClass:"w3-input w3-border" }}
+          </p>
+          <p>
+            <!-- <input class="w3-input w3-border" type="text" placeholder="Message" name="Message" required> -->{{ f.message|addClass:"w3-input w3-border" }}
+          </p>
+          <input type="submit" value="Send" class="w3-button w3-block w3-black">
+        </form>
+      </div>
+      {% endblock %}
+

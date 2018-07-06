@@ -1,0 +1,45 @@
+{% extends 'shop/list.html' %}
+{% load static %}
+{% block head %}
+  <div class="w3-display-container w3-container">
+    <img src="{{ products.image.url }}" alt="Jeans" style="width:100%">
+    <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+      <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
+      <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
+      <h1 class="w3-hide-small">COLLECTION 2018</h1>
+    </div>
+  </div>
+  {% endblock %}
+
+{% block photot %}
+
+<footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    <div class="w3-row-padding">
+      <div class="w3-col s3">
+        <h5>Name</h5>
+        <p>{{ products.name }}</p>
+      </div>
+
+      <div class="w3-col s3">
+        <h5>Price</h5>
+        <p>{{ products.price }}</p>
+      </div>
+
+      <div class="w3-col s3">
+        <h5>Stock</h5>
+        <p>{{ products.stock }}</p>
+      </div>
+
+      <div class="w3-col s3">
+        <h5>Created</h5>
+        <p>{{ products.updated }}</p>
+      </div>
+      </div>
+    </footer>
+<form action="{% url 'cart:cart_add' products.id %}" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Add to cart" class="w3-button w3-block w3-blue">
+</form>
+
+{% endblock %}
